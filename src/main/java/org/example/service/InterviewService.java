@@ -1,18 +1,17 @@
 package org.example.service;
 
 import org.example.model.Interview;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface InterviewService {
 
-    Interview save(Interview interview);
+    Interview save(Interview interview) throws Exception;
 
-    Interview update(Interview interview);
+    Interview update(Interview interview) throws Exception;
 
-    Interview findById(Integer id);
+    Interview findById(Integer id) throws Exception;
 
-    List<Interview> findAll();
+    Page<Interview> findAll(Integer page, Integer size);
 
     void delete(Interview interview);
 }
