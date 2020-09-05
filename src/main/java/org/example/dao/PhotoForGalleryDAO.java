@@ -1,13 +1,16 @@
 package org.example.dao;
 
+import org.example.model.News;
 import org.example.model.PhotoForGallery;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface PhotoForGalleryDAO extends JpaRepository<PhotoForGallery, Integer> {
+public interface PhotoForGalleryDAO extends PagingAndSortingRepository<PhotoForGallery, Integer> {
 
-    List<PhotoForGallery> findAllByGallery(Integer id);
+    Page<PhotoForGallery> findAll(Pageable pageable);
+
+    Page<PhotoForGallery> findAllByGallery(Integer id, Pageable pageable);
 }
