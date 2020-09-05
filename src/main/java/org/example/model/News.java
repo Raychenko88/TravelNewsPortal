@@ -25,5 +25,6 @@ public class News {
     private String author;
     private String video;
     private LocalDateTime creationTime;
+    private LocalDate localDate;
     private String country;
 }

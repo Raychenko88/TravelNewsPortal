@@ -25,4 +25,5 @@ public class Interview {
     private String author;
     private String video;
     private LocalDateTime creationTime;
+    private LocalDate localDate;
 }

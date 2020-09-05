@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.example.dao.UserDAO;
 import org.example.model.User;
 import org.example.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,6 +34,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findById(Integer id) throws Exception {
         return userDAO.findById(id).orElseThrow(() -> new Exception("User not found"));
+    }
+
+    @Override
+    public Page<User> findAll(Integer page, Integer size) {
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        return userDAO.findAll(pageRequest);
     }
 
     @Override

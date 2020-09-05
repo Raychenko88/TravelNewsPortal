@@ -23,5 +23,6 @@ public class Gallery {
     private String text;
     private String video;
     private LocalDateTime creationTime;
+    private LocalDate localDate;
     private String country;
 }

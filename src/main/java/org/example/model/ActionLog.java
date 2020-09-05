@@ -22,5 +22,5 @@ public class ActionLog {
     private String userName;
     private Integer login;
     private String action;
-    private LocalDateTime localDateTime;
+    private LocalDateTime creationTime;
 }

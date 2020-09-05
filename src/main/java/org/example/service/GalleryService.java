@@ -1,18 +1,17 @@
 package org.example.service;
 
 import org.example.model.Gallery;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface GalleryService {
 
-    Gallery save(Gallery gallery);
+    Gallery save(Gallery gallery) throws Exception;
 
-    Gallery update(Gallery gallery);
+    Gallery update(Gallery gallery) throws Exception;
 
-    Gallery findById(Integer id);
+    Gallery findById(Integer id) throws Exception;
 
-    List<Gallery> findAll();
+    Page<Gallery> findAll(Integer page, Integer size);
 
     void delete(Gallery gallery);
 }
