@@ -4,11 +4,11 @@ import org.example.model.Banner;
 
 public interface BannerService {
 
-    Banner save(Banner banner);
+    Banner save(Banner banner) throws Exception;
 
-    Banner update(Banner banner);
+    Banner update(Banner banner) throws Exception;
 
-    Banner finById(Integer id);
+    Banner finById(Integer id) throws Exception;
 
     void delete(Banner banner);
 }
