@@ -44,13 +44,15 @@ public class NewsServiceImpl implements NewsService {
     @Override
     public Page<News> findAll(Integer page, Integer size) {
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
-        PageRequest pageRequest = PageRequest.of(page, size, sort); 
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
         return newsDAO.findAll(pageRequest);
     }
 
     @Override
-    public Page<News> findAllByCountry(String country, Pageable pageable) {
-        return newsDAO.findAllByCountry(country, pageable);
+    public Page<News> findAllByCountry(String country, Integer page, Integer size) {
+        Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        return newsDAO.findAllByCountry(country, pageRequest);
     }
 
     @Override

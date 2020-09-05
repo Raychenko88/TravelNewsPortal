@@ -62,10 +62,10 @@ public class NewsController {
         return new ResponseEntity<>(newsService.findAll(page, size), HttpStatus.OK);
     }
 
-    @GetMapping(path = "country")
+    @GetMapping(path = "find-all-by-country")
     public ResponseEntity<Page> findAllByCountry(@RequestParam String country
-            , @PageableDefault(sort = {"creationTime"}) Pageable pageable){
-        return new ResponseEntity<>(newsService.findAllByCountry(country, pageable), HttpStatus.OK);
+            , @RequestParam Integer page, @RequestParam Integer size){
+        return new ResponseEntity<>(newsService.findAllByCountry(country, page, size), HttpStatus.OK);
     }
 
 

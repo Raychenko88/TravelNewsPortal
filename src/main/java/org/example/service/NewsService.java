@@ -16,7 +16,7 @@ public interface NewsService {
 
     Page<News> findAll(Integer page, Integer size);
 
-    Page<News> findAllByCountry(String country, Pageable pageable);
+    Page<News> findAllByCountry(String country, Integer page, Integer size);
 
     void delete(News news);
 }

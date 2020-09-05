@@ -4,11 +4,11 @@ import org.example.model.User;
 
 public interface UserService {
 
-    User save(User user);
+    User save(User user) throws Exception;
 
-    User update(User user);
+    User update(User user) throws Exception;
 
-    User findById(Integer id);
+    User findById(Integer id) throws Exception;
 
     void delete(User user);
 }
