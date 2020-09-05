@@ -14,7 +14,7 @@ public interface PhotoForGalleryService {
 
     List<PhotoForGallery> finAll();
 
-    List<PhotoForGallery> findAllByNewsId(Integer id);
+    List<PhotoForGallery> findAllByGallery(Integer id);
 
     void delete(PhotoForGallery photoForGallery);
 }

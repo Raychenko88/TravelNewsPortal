@@ -17,7 +17,8 @@ public class PhotoForGallery {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Integer newsId;
+    @ManyToOne(targetEntity = Gallery.class)
+    private Gallery gallery;
     private String link;
     private LocalDate localDate;
 }

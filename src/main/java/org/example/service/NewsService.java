@@ -1,20 +1,22 @@
 package org.example.service;
 
 import org.example.model.News;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface NewsService {
 
-    News save(News news);
+    News save(News news) throws Exception;
 
-    News update(News news);
+    News update(News news) throws Exception;
 
-    News findById(Integer id);
+    News findById(Integer id) throws Exception;
 
-    List<News> findAll();
+    Page<News> findAll(Integer page, Integer size);
 
-    List<News> findAllByCountry(String string);
+    Page<News> findAllByCountry(String country, Pageable pageable);
 
     void delete(News news);
 }

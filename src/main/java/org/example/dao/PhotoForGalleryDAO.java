@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface PhotoForGalleryDAO extends JpaRepository<PhotoForGallery, Integer> {
 
-    List<PhotoForGallery> findAllByNewsId(Integer id);
+    List<PhotoForGallery> findAllByGallery(Integer id);
 }

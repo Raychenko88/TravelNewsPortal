@@ -1,13 +1,14 @@
 package org.example.dao;
 
 import org.example.model.News;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
-public interface NewsDAO extends JpaRepository<News, Integer> {
+public interface NewsDAO extends PagingAndSortingRepository<News, Integer> {
 
-    List<News> findAllByCountry(String string);
+    Page<News> findAllByCountry(String string, Pageable pageable);
+    Page<News> findAll(Pageable pageable);
 }

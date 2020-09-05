@@ -17,8 +17,8 @@ public class Banner {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private String image;
+    private String imageLink;
     private String link;
-    private String client;
+    private String clientLink;
     private LocalDate localDate;
 }
