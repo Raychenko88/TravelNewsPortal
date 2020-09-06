@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.model.News;
 import org.example.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,38 +15,29 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("news")
 public class NewsController {
 
-    @Autowired
-    NewsService newsService;
+
+    private final NewsService newsService;
 
     @PutMapping
     public ResponseEntity<News> save(@RequestBody News news){
-        News newsFromDB = null;
         try {
-            newsFromDB = newsService.save(news);
+            return new ResponseEntity<>(newsService.save(news), HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (newsFromDB == null){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<News> update (@RequestBody News news){
-        News newsFromDB = null;
         try {
-            newsFromDB = newsService.update(news);
+            return new ResponseEntity<>(newsService.update(news), HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (newsFromDB == null){
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
         }
-        return new ResponseEntity<>(news, HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")
@@ -70,18 +62,13 @@ public class NewsController {
 
 
 
-    @DeleteMapping
-    public ResponseEntity delete(@PathVariable News news){
-        News newsFromDB = null;
+    @DeleteMapping(path = "/{id}")
+    public ResponseEntity delete(@PathVariable Integer id){
         try {
-            newsFromDB = newsService.findById(news.getId());
+            newsService.delete(newsService.findById(id));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (newsFromDB == null){
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-        newsService.delete(newsFromDB);
-        return new ResponseEntity<>(newsFromDB, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
