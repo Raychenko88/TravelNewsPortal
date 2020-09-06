@@ -8,7 +8,7 @@ public interface BannerService {
 
     Banner update(Banner banner) throws Exception;
 
-    Banner finById(Integer id) throws Exception;
+    Banner findById(Integer id) throws Exception;
 
     void delete(Banner banner);
 }
