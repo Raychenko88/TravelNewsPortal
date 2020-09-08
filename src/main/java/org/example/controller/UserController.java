@@ -6,18 +6,20 @@ import org.example.model.User;
 import org.example.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("users")
+@RequestMapping(value = "users")
 public class UserController {
 
     private final UserService userService;
 
-    @PutMapping
-    public ResponseEntity<User> save(@RequestBody User user){
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<User> save(@RequestBody User user) {
         try {
             return new ResponseEntity<>(userService.save(user), HttpStatus.OK);
         } catch (Exception e) {
@@ -25,8 +27,9 @@ public class UserController {
         }
     }
 
-    @PostMapping
-    public ResponseEntity<User> update (@RequestBody User user){
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<User> update(@RequestBody User user) {
         try {
             return new ResponseEntity<>(userService.update(user), HttpStatus.OK);
         } catch (Exception e) {
@@ -35,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<User> findById(@PathVariable Integer id){
+    public ResponseEntity<User> findById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -43,14 +46,23 @@ public class UserController {
         }
     }
 
+    @GetMapping(path = "by-login")
+    public ResponseEntity<User> findByLogin(@RequestParam String login) {
+        try {
+            return new ResponseEntity<>(userService.findByLogin(login), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
+
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size){
+    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
         return new ResponseEntity<>(userService.findAll(page, size), HttpStatus.OK);
     }
 
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable Integer id){
+    public ResponseEntity delete(@PathVariable Integer id) {
         try {
             userService.delete(userService.findById(id));
         } catch (Exception e) {

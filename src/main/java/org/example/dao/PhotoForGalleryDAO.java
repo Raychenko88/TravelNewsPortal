@@ -12,5 +12,5 @@ public interface PhotoForGalleryDAO extends PagingAndSortingRepository<PhotoForG
 
     Page<PhotoForGallery> findAll(Pageable pageable);
 
-    Page<PhotoForGallery> findAllByGallery(Integer id, Pageable pageable);
+    Page<PhotoForGallery> findAllByGalleryId(Integer galleryId, Pageable pageable);
 }

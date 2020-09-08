@@ -6,6 +6,7 @@ import org.example.model.User;
 import org.example.service.BannerService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class BannerController {
 
     private final BannerService bannerService;
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Banner> save(@RequestBody Banner banner){
         try {
             return new ResponseEntity<>(bannerService.save(banner), HttpStatus.OK);
@@ -25,7 +27,8 @@ public class BannerController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Banner> update (@RequestBody Banner banner){
         try {
             return new ResponseEntity<>(bannerService.update(banner), HttpStatus.OK);

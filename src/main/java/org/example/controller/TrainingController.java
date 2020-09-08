@@ -6,6 +6,7 @@ import org.example.model.User;
 import org.example.service.TrainingService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class TrainingController {
 
     private final TrainingService trainingService;
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Training> save(@RequestBody Training training){
         try {
             return new ResponseEntity<>(trainingService.save(training), HttpStatus.OK);
@@ -25,7 +27,8 @@ public class TrainingController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Training> update (@RequestBody Training training){
         try {
             return new ResponseEntity<>(trainingService.update(training), HttpStatus.OK);

@@ -6,6 +6,7 @@ import org.example.model.User;
 import org.example.service.ActionLogService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class ActionLogController {
 
     private final ActionLogService actionLogService;
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ActionLog> save(@RequestBody ActionLog actionLog){
         try {
             return new ResponseEntity<>(actionLogService.save(actionLog), HttpStatus.OK);
@@ -25,7 +27,8 @@ public class ActionLogController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ActionLog> update (@RequestBody ActionLog actionLog){
         try {
             return new ResponseEntity<>(actionLogService.update(actionLog), HttpStatus.OK);

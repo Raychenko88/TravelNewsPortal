@@ -6,6 +6,7 @@ import org.example.model.User;
 import org.example.service.PhotoForGalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class PhotoForGalleryController {
 
     private final PhotoForGalleryService photoForGalleryService;
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<PhotoForGallery> save(@RequestBody PhotoForGallery photoForGallery){
         try {
             return new ResponseEntity<>(photoForGalleryService.save(photoForGallery), HttpStatus.OK);
@@ -25,7 +27,8 @@ public class PhotoForGalleryController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<PhotoForGallery> update (@RequestBody PhotoForGallery photoForGallery){
         try {
             return new ResponseEntity<>(photoForGalleryService.update(photoForGallery), HttpStatus.OK);
@@ -49,7 +52,7 @@ public class PhotoForGalleryController {
     }
 
     @GetMapping(path = "find-all-by-gallery")
-    public ResponseEntity<Page> findAllByCountry(@RequestParam Integer id
+    public ResponseEntity<Page> findAllBygallery(@RequestParam Integer id
             , @RequestParam Integer page, @RequestParam Integer size){
         return new ResponseEntity<>(photoForGalleryService.findAllByGallery(id, page, size), HttpStatus.OK);
     }

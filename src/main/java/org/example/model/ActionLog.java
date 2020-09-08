@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -22,5 +23,5 @@ public class ActionLog {
     private String userName;
     private Integer login;
     private String action;
-    private LocalDateTime creationTime;
+    private Date creationTime;
 }

@@ -38,6 +38,11 @@ public class ActionLogServiceImpl implements ActionLogService {
 
     @Override
     public Page<ActionLog> findAll(Integer page, Integer size) {
+        if (page > 0){
+            page--;
+        }else {
+            page = 0;
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return actionLogDAO.findAll(pageRequest);

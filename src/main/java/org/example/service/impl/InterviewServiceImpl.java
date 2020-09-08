@@ -38,6 +38,11 @@ public class InterviewServiceImpl implements InterviewService {
 
     @Override
     public Page<Interview> findAll(Integer page, Integer size) {
+        if (page > 0){
+            page--;
+        }else {
+            page = 0;
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return interviewDAO.findAll(pageRequest);

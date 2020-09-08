@@ -19,11 +19,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(length = 50)
-    private Integer login;
+    private String login;
     @Column(length = 50)
-    private String pasword;
+    private String password;
     @Column(name = "first_name", length = 50)
     private String firstName;
     @Column(name = "last_name", length = 50)
     private String lastName;
+    @Column(name = "user_role", length = 50)
+    private String userRole;
 }

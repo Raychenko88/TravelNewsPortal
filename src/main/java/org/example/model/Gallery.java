@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -22,7 +23,7 @@ public class Gallery {
     private String heading;
     private String text;
     private String video;
-    private LocalDateTime creationTime;
-    private LocalDate localDate;
+    private Date creationTime;
+    private Date publishingTime;
     private String country;
 }

@@ -38,9 +38,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> findAll(Integer page, Integer size) {
+        if (page > 0){
+            page--;
+        }else {
+            page = 0;
+        }
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return userDAO.findAll(pageRequest);
+    }
+
+    @Override
+    public User findByLogin(String login) throws Exception {
+        if (userDAO.findByLogin(login) == null) {
+            throw new Exception("user with this login was not found");
+        }
+        return userDAO.findByLogin(login);
     }
 
     @Override

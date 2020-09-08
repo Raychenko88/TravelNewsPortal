@@ -29,7 +29,7 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public Banner finById(Integer id) throws Exception {
+    public Banner findById(Integer id) throws Exception {
         return bannerDAO.findById(id).orElseThrow(() -> new Exception("Banner not found"));
     }
 

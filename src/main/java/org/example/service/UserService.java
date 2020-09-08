@@ -13,5 +13,7 @@ public interface UserService {
 
     Page<User> findAll(Integer page, Integer size);
 
+    User findByLogin(String login) throws Exception;
+
     void delete(User user);
 }

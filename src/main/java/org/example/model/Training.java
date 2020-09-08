@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -23,6 +24,6 @@ public class Training {
     private String text;
     private String video;
     private String country;
-    private LocalDate localDate;
-    private LocalDateTime creationTime;
+    private Date creationTime;
+    private Date publishingTime;
 }

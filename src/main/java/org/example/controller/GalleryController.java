@@ -6,6 +6,7 @@ import org.example.model.User;
 import org.example.service.GalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class GalleryController {
 
     private final GalleryService galleryService;
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Gallery> save(@RequestBody Gallery gallery){
         try {
             return new ResponseEntity<>(galleryService.save(gallery), HttpStatus.OK);
@@ -25,7 +27,8 @@ public class GalleryController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Gallery> update (@RequestBody Gallery gallery){
         try {
             return new ResponseEntity<>(galleryService.update(gallery), HttpStatus.OK);

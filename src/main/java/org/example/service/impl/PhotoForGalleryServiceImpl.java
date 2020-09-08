@@ -1,5 +1,6 @@
 package org.example.service.impl;
 
+import com.sun.xml.bind.v2.TODO;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.PhotoForGalleryDAO;
 import org.example.model.PhotoForGallery;
@@ -38,6 +39,11 @@ public class PhotoForGalleryServiceImpl implements PhotoForGalleryService {
 
     @Override
     public Page<PhotoForGallery> findAll(Integer page, Integer size) {
+        if (page > 0){
+            page--;
+        }else {
+            page = 0;
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return photoForGalleryDAO.findAll(pageRequest);
@@ -45,9 +51,14 @@ public class PhotoForGalleryServiceImpl implements PhotoForGalleryService {
 
     @Override
     public Page<PhotoForGallery> findAllByGallery(Integer id, Integer page, Integer size) {
+        if (page > 0){
+            page--;
+        }else {
+            page = 0;
+        }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return photoForGalleryDAO.findAllByGallery(id, pageRequest);
+        return photoForGalleryDAO.findAllByGalleryId(id, pageRequest);
     }
 
     @Override

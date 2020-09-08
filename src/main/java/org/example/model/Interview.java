@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -24,6 +25,6 @@ public class Interview {
     private String text;
     private String author;
     private String video;
-    private LocalDateTime creationTime;
-    private LocalDate localDate;
+    private Date creationTime;
+    private Date publishingTime;
 }

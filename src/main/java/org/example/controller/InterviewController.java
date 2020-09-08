@@ -6,6 +6,7 @@ import org.example.model.User;
 import org.example.service.InterviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,8 @@ public class InterviewController {
 
     private final InterviewService interviewService;
 
-    @PutMapping
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Interview> save(@RequestBody Interview interview){
         try {
             return new ResponseEntity<>(interviewService.save(interview), HttpStatus.OK);
@@ -25,7 +27,8 @@ public class InterviewController {
         }
     }
 
-    @PostMapping
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
+            , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Interview> update (@RequestBody Interview interview){
         try {
             return new ResponseEntity<>(interviewService.update(interview), HttpStatus.OK);
