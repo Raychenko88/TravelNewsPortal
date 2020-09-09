@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(" actions")
+@RequestMapping("actions")
 public class ActionLogController {
 
     private final ActionLogService actionLogService;
