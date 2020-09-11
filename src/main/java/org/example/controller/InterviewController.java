@@ -8,15 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("interviews")
+@RequestMapping("interview")
 public class InterviewController {
 
     private final InterviewService interviewService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Interview> save(@RequestBody Interview interview){
@@ -27,6 +29,7 @@ public class InterviewController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Interview> update (@RequestBody Interview interview){
@@ -52,6 +55,7 @@ public class InterviewController {
     }
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable Integer id){
         try {

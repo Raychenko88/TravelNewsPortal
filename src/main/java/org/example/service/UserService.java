@@ -5,15 +5,15 @@ import org.springframework.data.domain.Page;
 
 public interface UserService {
 
-    User save(User user) throws Exception;
+    User save(User user);
 
-    User update(User user) throws Exception;
+    User update(User user);
 
-    User findById(Integer id) throws Exception;
+    User findById(Integer id);
 
     Page<User> findAll(Integer page, Integer size);
 
-    User findByLogin(String login) throws Exception;
+    User findByLogin(String login);
 
     void delete(User user);
 }

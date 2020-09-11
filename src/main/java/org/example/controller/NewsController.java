@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class NewsController {
 
     private final NewsService newsService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<News> save(@RequestBody News news){
@@ -33,6 +35,7 @@ public class NewsController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<News> update (@RequestBody News news){
@@ -64,7 +67,7 @@ public class NewsController {
     }
 
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable Integer id){
         try {

@@ -8,15 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("actions")
+@RequestMapping("action")
 public class ActionLogController {
 
     private final ActionLogService actionLogService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ActionLog> save(@RequestBody ActionLog actionLog){
@@ -27,6 +29,7 @@ public class ActionLogController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ActionLog> update (@RequestBody ActionLog actionLog){
@@ -50,8 +53,8 @@ public class ActionLogController {
     public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size){
         return new ResponseEntity<>(actionLogService.findAll(page, size), HttpStatus.OK);
     }
-
-
+    
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable Integer id){
         try {

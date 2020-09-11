@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface PhotoForGalleryService {
 
-    PhotoForGallery save(PhotoForGallery photoForGallery) throws Exception;
+    PhotoForGallery save(PhotoForGallery photoForGallery);
 
-    PhotoForGallery update(PhotoForGallery photoForGallery) throws Exception;
+    PhotoForGallery update(PhotoForGallery photoForGallery);
 
-    PhotoForGallery findById(Integer id) throws Exception;
+    PhotoForGallery findById(Integer id);
 
     Page<PhotoForGallery> findAll(Integer page, Integer size);
 

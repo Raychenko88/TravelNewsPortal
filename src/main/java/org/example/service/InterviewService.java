@@ -5,11 +5,11 @@ import org.springframework.data.domain.Page;
 
 public interface InterviewService {
 
-    Interview save(Interview interview) throws Exception;
+    Interview save(Interview interview);
 
-    Interview update(Interview interview) throws Exception;
+    Interview update(Interview interview);
 
-    Interview findById(Integer id) throws Exception;
+    Interview findById(Integer id);
 
     Page<Interview> findAll(Integer page, Integer size);
 

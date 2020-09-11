@@ -3,11 +3,16 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.GalleryDAO;
 import org.example.model.Gallery;
+import org.example.model.Training;
 import org.example.service.GalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
 
 @Service
 @RequiredArgsConstructor
@@ -16,24 +21,34 @@ public class GalleryServiceImpl implements GalleryService {
     private final GalleryDAO galleryDAO;
 
     @Override
-    public Gallery save(Gallery gallery) throws Exception {
+    public Gallery save(Gallery gallery){
         if (gallery.getId() != null) {
-            throw new Exception("Gallery already exists");
+            try {
+                throw new Exception("Gallery already exists");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return galleryDAO.save(gallery);
     }
 
     @Override
-    public Gallery update(Gallery gallery) throws Exception {
+    public Gallery update(Gallery gallery){
         if (gallery.getId() == null) {
-            throw new Exception("Gallery id not found");
+            try {
+                throw new Exception("Gallery id not found");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return galleryDAO.save(gallery);
     }
 
     @Override
-    public Gallery findById(Integer id) throws Exception {
-        return galleryDAO.findById(id).orElseThrow(() -> new Exception("Gallery not found"));
+    public Gallery findById(Integer id){
+        Optional<Gallery> gallery =  ofNullable(galleryDAO.findById(id))
+                .orElseThrow(() -> new RuntimeException());
+        return gallery.get();
     }
 
     @Override

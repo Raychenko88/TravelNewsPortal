@@ -5,11 +5,11 @@ import org.springframework.data.domain.Page;
 
 public interface TrainingService {
 
-    Training save(Training training) throws Exception;
+    Training save(Training training);
 
-    Training update(Training training) throws Exception;
+    Training update(Training training);
 
-    Training findById(Integer id) throws Exception;
+    Training findById(Integer id);
 
     Page<Training> findAll(Integer page, Integer size);
 

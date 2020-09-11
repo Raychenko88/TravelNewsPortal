@@ -8,15 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("photos")
+@RequestMapping("photo")
 public class PhotoForGalleryController {
 
     private final PhotoForGalleryService photoForGalleryService;
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<PhotoForGallery> save(@RequestBody PhotoForGallery photoForGallery){
@@ -27,6 +29,7 @@ public class PhotoForGalleryController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<PhotoForGallery> update (@RequestBody PhotoForGallery photoForGallery){
@@ -37,6 +40,7 @@ public class PhotoForGalleryController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping(path = "/{id}")
     public ResponseEntity<PhotoForGallery> findById(@PathVariable Integer id){
         try {
@@ -58,6 +62,7 @@ public class PhotoForGalleryController {
     }
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
     public ResponseEntity delete(@PathVariable Integer id){
         try {

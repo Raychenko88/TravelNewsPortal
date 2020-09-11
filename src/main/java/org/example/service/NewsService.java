@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface NewsService {
 
-    News save(News news) throws Exception;
+    News save(News news);
 
-    News update(News news) throws Exception;
+    News update(News news);
 
-    News findById(Integer id) throws Exception;
+    News findById(Integer id);
 
     Page<News> findAll(Integer page, Integer size);
 

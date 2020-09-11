@@ -5,11 +5,11 @@ import org.springframework.data.domain.Page;
 
 public interface GalleryService {
 
-    Gallery save(Gallery gallery) throws Exception;
+    Gallery save(Gallery gallery);
 
-    Gallery update(Gallery gallery) throws Exception;
+    Gallery update(Gallery gallery);
 
-    Gallery findById(Integer id) throws Exception;
+    Gallery findById(Integer id);
 
     Page<Gallery> findAll(Integer page, Integer size);
 

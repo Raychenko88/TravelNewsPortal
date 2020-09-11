@@ -9,6 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -16,24 +20,34 @@ public class UserServiceImpl implements UserService {
     private final UserDAO userDAO;
 
     @Override
-    public User save(User user) throws Exception {
-        if (user.getId() != null) {
-            throw new Exception("User already exists");
+    public User save(User user) {
+        if (user.getId() != null || !userDAO.findByLogin(user.getLogin()).isEmpty()) {
+            try {
+                throw new Exception("User already exists");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return userDAO.save(user);
     }
 
     @Override
-    public User update(User user) throws Exception {
+    public User update(User user) {
         if (user.getId() == null) {
-            throw new Exception("User id not found");
+            try {
+                throw new Exception("User id not found");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return userDAO.save(user);
     }
 
     @Override
-    public User findById(Integer id) throws Exception {
-        return userDAO.findById(id).orElseThrow(() -> new Exception("User not found"));
+    public User findById(Integer id) {
+        Optional<User> user =  ofNullable(userDAO.findById(id))
+                .orElseThrow(() -> new RuntimeException());
+        return user.get();
     }
 
     @Override
@@ -49,11 +63,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByLogin(String login) throws Exception {
-        if (userDAO.findByLogin(login) == null) {
-            throw new Exception("user with this login was not found");
-        }
-        return userDAO.findByLogin(login);
+    public User findByLogin(String login) {
+       Optional<User> user =  ofNullable(userDAO.findByLogin(login)
+                .stream()
+                .findFirst())
+                .orElseThrow(() -> new RuntimeException());
+       return user.get();
     }
 
     @Override

@@ -3,11 +3,16 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.InterviewDAO;
 import org.example.model.Interview;
+import org.example.model.Training;
 import org.example.service.InterviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+import static java.util.Optional.ofNullable;
 
 @Service
 @RequiredArgsConstructor
@@ -16,24 +21,34 @@ public class InterviewServiceImpl implements InterviewService {
     private final InterviewDAO interviewDAO;
 
     @Override
-    public Interview save(Interview interview) throws Exception {
+    public Interview save(Interview interview){
         if (interview.getId() != null) {
-            throw new Exception("Interview already exists");
+            try {
+                throw new Exception("Interview already exists");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return interviewDAO.save(interview);
     }
 
     @Override
-    public Interview update(Interview interview) throws Exception {
+    public Interview update(Interview interview){
         if (interview.getId() == null) {
-            throw new Exception("Interview id not found");
+            try {
+                throw new Exception("Interview id not found");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return interviewDAO.save(interview);
     }
 
     @Override
-    public Interview findById(Integer id) throws Exception {
-        return interviewDAO.findById(id).orElseThrow(() -> new Exception("Interview not found"));
+    public Interview findById(Integer id){
+        Optional<Interview> interview =  ofNullable(interviewDAO.findById(id))
+                .orElseThrow(() -> new RuntimeException());
+        return interview.get();
     }
 
     @Override
