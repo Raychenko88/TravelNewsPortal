@@ -2,7 +2,6 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.model.ActionLog;
-import org.example.model.User;
 import org.example.service.ActionLogService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ public class ActionLogController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<ActionLog> save(@RequestBody ActionLog actionLog){
+    public ResponseEntity<ActionLog> save(@RequestBody ActionLog actionLog) {
         try {
             return new ResponseEntity<>(actionLogService.save(actionLog), HttpStatus.OK);
         } catch (Exception e) {
@@ -32,7 +31,7 @@ public class ActionLogController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<ActionLog> update (@RequestBody ActionLog actionLog){
+    public ResponseEntity<ActionLog> update(@RequestBody ActionLog actionLog) {
         try {
             return new ResponseEntity<>(actionLogService.update(actionLog), HttpStatus.OK);
         } catch (Exception e) {
@@ -41,7 +40,7 @@ public class ActionLogController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ActionLog> findById(@PathVariable Integer id){
+    public ResponseEntity<ActionLog> findById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(actionLogService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -50,13 +49,13 @@ public class ActionLogController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size){
+    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
         return new ResponseEntity<>(actionLogService.findAll(page, size), HttpStatus.OK);
     }
-    
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable Integer id){
+    public ResponseEntity delete(@PathVariable Integer id) {
         try {
             actionLogService.delete(actionLogService.findById(id));
         } catch (Exception e) {

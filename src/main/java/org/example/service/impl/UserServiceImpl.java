@@ -45,16 +45,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findById(Integer id) {
-        Optional<User> user =  ofNullable(userDAO.findById(id))
+        Optional<User> user = ofNullable(userDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return user.get();
     }
 
     @Override
     public Page<User> findAll(Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
@@ -64,11 +64,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByLogin(String login) {
-       Optional<User> user =  ofNullable(userDAO.findByLogin(login)
+        Optional<User> user = ofNullable(userDAO.findByLogin(login)
                 .stream()
                 .findFirst())
                 .orElseThrow(() -> new RuntimeException());
-       return user.get();
+        return user.get();
     }
 
     @Override

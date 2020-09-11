@@ -3,7 +3,6 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.GalleryDAO;
 import org.example.model.Gallery;
-import org.example.model.Training;
 import org.example.service.GalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +20,7 @@ public class GalleryServiceImpl implements GalleryService {
     private final GalleryDAO galleryDAO;
 
     @Override
-    public Gallery save(Gallery gallery){
+    public Gallery save(Gallery gallery) {
         if (gallery.getId() != null) {
             try {
                 throw new Exception("Gallery already exists");
@@ -33,7 +32,7 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public Gallery update(Gallery gallery){
+    public Gallery update(Gallery gallery) {
         if (gallery.getId() == null) {
             try {
                 throw new Exception("Gallery id not found");
@@ -45,17 +44,17 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public Gallery findById(Integer id){
-        Optional<Gallery> gallery =  ofNullable(galleryDAO.findById(id))
+    public Gallery findById(Integer id) {
+        Optional<Gallery> gallery = ofNullable(galleryDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return gallery.get();
     }
 
     @Override
     public Page<Gallery> findAll(Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
@@ -65,6 +64,6 @@ public class GalleryServiceImpl implements GalleryService {
 
     @Override
     public void delete(Gallery gallery) {
-    galleryDAO.delete(gallery);
+        galleryDAO.delete(gallery);
     }
 }

@@ -3,7 +3,6 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.NewsDAO;
 import org.example.model.News;
-import org.example.model.Training;
 import org.example.service.NewsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +20,7 @@ public class NewsServiceImpl implements NewsService {
     private final NewsDAO newsDAO;
 
     @Override
-    public News save(News news){
+    public News save(News news) {
         if (news.getId() != null) {
             try {
                 throw new Exception("News already exists");
@@ -33,7 +32,7 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News update(News news){
+    public News update(News news) {
         if (news.getId() == null) {
             try {
                 throw new Exception("News id not found");
@@ -45,8 +44,8 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public News findById(Integer id){
-        Optional<News> news =  ofNullable(newsDAO.findById(id))
+    public News findById(Integer id) {
+        Optional<News> news = ofNullable(newsDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return news.get();
     }
@@ -54,9 +53,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Page<News> findAll(Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
@@ -66,9 +65,9 @@ public class NewsServiceImpl implements NewsService {
 
     @Override
     public Page<News> findAllByCountry(String country, Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");

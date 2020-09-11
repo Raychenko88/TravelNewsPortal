@@ -3,7 +3,6 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.InterviewDAO;
 import org.example.model.Interview;
-import org.example.model.Training;
 import org.example.service.InterviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +20,7 @@ public class InterviewServiceImpl implements InterviewService {
     private final InterviewDAO interviewDAO;
 
     @Override
-    public Interview save(Interview interview){
+    public Interview save(Interview interview) {
         if (interview.getId() != null) {
             try {
                 throw new Exception("Interview already exists");
@@ -33,7 +32,7 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public Interview update(Interview interview){
+    public Interview update(Interview interview) {
         if (interview.getId() == null) {
             try {
                 throw new Exception("Interview id not found");
@@ -45,17 +44,17 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public Interview findById(Integer id){
-        Optional<Interview> interview =  ofNullable(interviewDAO.findById(id))
+    public Interview findById(Integer id) {
+        Optional<Interview> interview = ofNullable(interviewDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return interview.get();
     }
 
     @Override
     public Page<Interview> findAll(Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");

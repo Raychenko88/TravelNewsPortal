@@ -3,7 +3,6 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.TrainingDAO;
 import org.example.model.Training;
-import org.example.model.User;
 import org.example.service.TrainingService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -47,7 +46,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public Training findById(Integer id){
-        Optional<Training> training =  ofNullable(trainingDAO.findById(id))
+        Optional<Training> training = ofNullable(trainingDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return training.get();
     }

@@ -2,7 +2,6 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.model.Training;
-import org.example.model.User;
 import org.example.service.TrainingService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ public class TrainingController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Training> save(@RequestBody Training training){
+    public ResponseEntity<Training> save(@RequestBody Training training) {
         try {
             return new ResponseEntity<>(trainingService.save(training), HttpStatus.OK);
         } catch (Exception e) {
@@ -32,7 +31,7 @@ public class TrainingController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Training> update (@RequestBody Training training){
+    public ResponseEntity<Training> update(@RequestBody Training training) {
         try {
             return new ResponseEntity<>(trainingService.update(training), HttpStatus.OK);
         } catch (Exception e) {
@@ -42,7 +41,7 @@ public class TrainingController {
 
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Training> findById(@PathVariable Integer id){
+    public ResponseEntity<Training> findById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(trainingService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -51,13 +50,13 @@ public class TrainingController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size){
+    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
         return new ResponseEntity<>(trainingService.findAll(page, size), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable Integer id){
+    public ResponseEntity delete(@PathVariable Integer id) {
         try {
             trainingService.delete(trainingService.findById(id));
         } catch (Exception e) {

@@ -2,7 +2,6 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.model.Gallery;
-import org.example.model.User;
 import org.example.service.GalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -21,7 +20,7 @@ public class GalleryController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Gallery> save(@RequestBody Gallery gallery){
+    public ResponseEntity<Gallery> save(@RequestBody Gallery gallery) {
         try {
             return new ResponseEntity<>(galleryService.save(gallery), HttpStatus.OK);
         } catch (Exception e) {
@@ -32,7 +31,7 @@ public class GalleryController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE
             , produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<Gallery> update (@RequestBody Gallery gallery){
+    public ResponseEntity<Gallery> update(@RequestBody Gallery gallery) {
         try {
             return new ResponseEntity<>(galleryService.update(gallery), HttpStatus.OK);
         } catch (Exception e) {
@@ -41,7 +40,7 @@ public class GalleryController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<Gallery> findById(@PathVariable Integer id){
+    public ResponseEntity<Gallery> findById(@PathVariable Integer id) {
         try {
             return new ResponseEntity<>(galleryService.findById(id), HttpStatus.OK);
         } catch (Exception e) {
@@ -50,13 +49,13 @@ public class GalleryController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size){
+    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
         return new ResponseEntity<>(galleryService.findAll(page, size), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity delete(@PathVariable Integer id){
+    public ResponseEntity delete(@PathVariable Integer id) {
         try {
             galleryService.delete(galleryService.findById(id));
         } catch (Exception e) {

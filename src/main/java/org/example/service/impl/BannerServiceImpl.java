@@ -3,7 +3,6 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.BannerDAO;
 import org.example.model.Banner;
-import org.example.model.Training;
 import org.example.service.BannerService;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,7 @@ public class BannerServiceImpl implements BannerService {
     private final BannerDAO bannerDAO;
 
     @Override
-    public Banner save(Banner banner){
+    public Banner save(Banner banner) {
         if (banner.getId() != null) {
             try {
                 throw new Exception("Banner already exists");
@@ -30,7 +29,7 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public Banner update(Banner banner){
+    public Banner update(Banner banner) {
         if (banner.getId() == null) {
             try {
                 throw new Exception("Banner id not found");
@@ -42,8 +41,8 @@ public class BannerServiceImpl implements BannerService {
     }
 
     @Override
-    public Banner findById(Integer id){
-        Optional<Banner> banner =  ofNullable(bannerDAO.findById(id))
+    public Banner findById(Integer id) {
+        Optional<Banner> banner = ofNullable(bannerDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return banner.get();
     }

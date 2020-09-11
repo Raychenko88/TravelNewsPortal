@@ -1,10 +1,8 @@
 package org.example.service.impl;
 
-import com.sun.xml.bind.v2.TODO;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.PhotoForGalleryDAO;
 import org.example.model.PhotoForGallery;
-import org.example.model.Training;
 import org.example.service.PhotoForGalleryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -22,7 +20,7 @@ public class PhotoForGalleryServiceImpl implements PhotoForGalleryService {
     private final PhotoForGalleryDAO photoForGalleryDAO;
 
     @Override
-    public PhotoForGallery save(PhotoForGallery photoForGallery){
+    public PhotoForGallery save(PhotoForGallery photoForGallery) {
         if (photoForGallery.getId() != null) {
             try {
                 throw new Exception("PhotoForGallery already exists");
@@ -34,7 +32,7 @@ public class PhotoForGalleryServiceImpl implements PhotoForGalleryService {
     }
 
     @Override
-    public PhotoForGallery update(PhotoForGallery photoForGallery){
+    public PhotoForGallery update(PhotoForGallery photoForGallery) {
         if (photoForGallery.getId() == null) {
             try {
                 throw new Exception("PhotoForGallery id not found");
@@ -46,17 +44,17 @@ public class PhotoForGalleryServiceImpl implements PhotoForGalleryService {
     }
 
     @Override
-    public PhotoForGallery findById(Integer id){
-        Optional<PhotoForGallery> photoForGallery =  ofNullable(photoForGalleryDAO.findById(id))
+    public PhotoForGallery findById(Integer id) {
+        Optional<PhotoForGallery> photoForGallery = ofNullable(photoForGalleryDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
         return photoForGallery.get();
     }
 
     @Override
     public Page<PhotoForGallery> findAll(Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
@@ -66,9 +64,9 @@ public class PhotoForGalleryServiceImpl implements PhotoForGalleryService {
 
     @Override
     public Page<PhotoForGallery> findAllByGallery(Integer id, Integer page, Integer size) {
-        if (page > 0){
+        if (page > 0) {
             page--;
-        }else {
+        } else {
             page = 0;
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
