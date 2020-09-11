@@ -60,6 +60,12 @@ public class NewsController {
         return new ResponseEntity<>(newsService.findAllByCountry(country, page, size), HttpStatus.OK);
     }
 
+    @GetMapping(path = "find-all-by-country-is-not")
+    public ResponseEntity<Page> findAllByCountryIsNot(@RequestParam String country
+            , @RequestParam Integer page, @RequestParam Integer size){
+        return new ResponseEntity<>(newsService.findAllByCountryIsNot(country, page, size), HttpStatus.OK);
+    }
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping(path = "/{id}")

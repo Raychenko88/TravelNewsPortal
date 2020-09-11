@@ -18,5 +18,7 @@ public interface NewsService {
 
     Page<News> findAllByCountry(String country, Integer page, Integer size);
 
+    Page<News> findAllByCountryIsNot(String country, Integer page, Integer size);
+
     void delete(News news);
 }

@@ -6,6 +6,7 @@ import org.example.model.News;
 import org.example.service.NewsService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -73,6 +74,18 @@ public class NewsServiceImpl implements NewsService {
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
         return newsDAO.findAllByCountry(country, pageRequest);
+    }
+
+    @Override
+    public Page<News> findAllByCountryIsNot(String country, Integer page, Integer size) {
+        if (page > 0) {
+            page--;
+        } else {
+            page = 0;
+        }
+        Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
+        PageRequest pageRequest = PageRequest.of(page, size, sort);
+        return newsDAO.findAllByCountryIsNot(country, pageRequest);
     }
 
     @Override
