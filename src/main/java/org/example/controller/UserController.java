@@ -46,14 +46,6 @@ public class UserController {
         }
     }
 
-    @GetMapping(path = "by-login")
-    public ResponseEntity<User> findByLogin(@RequestParam String login) {
-        try {
-            return new ResponseEntity<>(userService.findByLogin(login), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        }
-    }
 
     @GetMapping
     public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
