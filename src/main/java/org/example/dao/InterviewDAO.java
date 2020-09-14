@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface InterviewDAO extends PagingAndSortingRepository<Interview, Integer> {
 
-    Page<Interview> findAll(Pageable pageable);
+    Page<Interview> findAllByPageLanguage(String pageLanguage, Pageable pageable);
 }

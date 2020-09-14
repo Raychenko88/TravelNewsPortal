@@ -51,7 +51,7 @@ public class InterviewServiceImpl implements InterviewService {
     }
 
     @Override
-    public Page<Interview> findAll(Integer page, Integer size) {
+    public Page<Interview> findAll(String pageLanguage, Integer page, Integer size) {
         if (page > 0) {
             page--;
         } else {
@@ -59,7 +59,7 @@ public class InterviewServiceImpl implements InterviewService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return interviewDAO.findAll(pageRequest);
+        return interviewDAO.findAllByPageLanguage(pageLanguage, pageRequest);
     }
 
     @Override

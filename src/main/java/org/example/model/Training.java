@@ -26,4 +26,5 @@ public class Training {
     private String country;
     private Date creationTime;
     private Date publishingTime;
+    private String pageLanguage;
 }

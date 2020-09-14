@@ -27,4 +27,5 @@ public class Interview {
     private String video;
     private Date creationTime;
     private Date publishingTime;
+    private String pageLanguage;
 }

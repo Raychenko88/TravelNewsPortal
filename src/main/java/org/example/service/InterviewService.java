@@ -11,7 +11,7 @@ public interface InterviewService {
 
     Interview findById(Integer id);
 
-    Page<Interview> findAll(Integer page, Integer size);
+    Page<Interview> findAll(String pageLanguage, Integer page, Integer size);
 
     void delete(Interview interview);
 }

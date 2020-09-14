@@ -11,7 +11,7 @@ public interface TrainingService {
 
     Training findById(Integer id);
 
-    Page<Training> findAll(Integer page, Integer size);
+    Page<Training> findAll(String pageLanguage, Integer page, Integer size);
 
     void delete(Training training);
 }

@@ -51,7 +51,7 @@ public class GalleryServiceImpl implements GalleryService {
     }
 
     @Override
-    public Page<Gallery> findAll(Integer page, Integer size) {
+    public Page<Gallery> findAll(String pageLanguage, Integer page, Integer size) {
         if (page > 0) {
             page--;
         } else {
@@ -59,7 +59,7 @@ public class GalleryServiceImpl implements GalleryService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return galleryDAO.findAll(pageRequest);
+        return galleryDAO.findAllByPageLanguage(pageLanguage, pageRequest);
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface GalleryService {
 
     Gallery findById(Integer id);
 
-    Page<Gallery> findAll(Integer page, Integer size);
+    Page<Gallery> findAll(String pageLanguage, Integer page, Integer size);
 
     void delete(Gallery gallery);
 }

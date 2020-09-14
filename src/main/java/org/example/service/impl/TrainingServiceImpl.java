@@ -1,7 +1,9 @@
 package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.dao.ActionLogDAO;
 import org.example.dao.TrainingDAO;
+import org.example.model.ActionLog;
 import org.example.model.Training;
 import org.example.service.TrainingService;
 import org.springframework.data.domain.Page;
@@ -19,6 +21,8 @@ public class TrainingServiceImpl implements TrainingService {
 
     private final TrainingDAO trainingDAO;
 
+    private final ActionLogDAO actionLogDAO;
+
     @Override
     public Training save(Training training){
         if (training.getId() != null) {
@@ -26,7 +30,6 @@ public class TrainingServiceImpl implements TrainingService {
                 throw new Exception("Training already exists");
             } catch (Exception e) {
                 e.printStackTrace();
-
             }
         }
         return trainingDAO.save(training);
@@ -52,7 +55,7 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public Page<Training> findAll(Integer page, Integer size) {
+    public Page<Training> findAll(String pageLanguage, Integer page, Integer size) {
         if (page > 0){
             page--;
         }else {
@@ -60,7 +63,7 @@ public class TrainingServiceImpl implements TrainingService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return trainingDAO.findAll(pageRequest);
+        return trainingDAO.findAllByPageLanguage(pageLanguage, pageRequest);
     }
 
     @Override

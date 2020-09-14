@@ -50,8 +50,8 @@ public class TrainingController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
-        return new ResponseEntity<>(trainingService.findAll(page, size), HttpStatus.OK);
+    public ResponseEntity<Page> findAll(@RequestParam String pageLanguage, @RequestParam Integer page, @RequestParam Integer size) {
+        return new ResponseEntity<>(trainingService.findAll(pageLanguage, page, size), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

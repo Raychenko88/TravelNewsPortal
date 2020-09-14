@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NewsDAO extends PagingAndSortingRepository<News, Integer> {
 
-    Page<News> findAllByCountry(String country, Pageable pageable);
+    Page<News> findAllByCountryAndPageLanguage(String pageLanguage, String country, Pageable pageable);
 
-    Page<News> findAll(Pageable pageable);
+    Page<News> findAllByPageLanguage(String pageLanguage, Pageable pageable);
 
-    Page<News> findAllByCountryIsNot(String country, Pageable pageable);
+    Page<News> findAllByCountryIsNotAndPageLanguage(String pageLanguage, String country, Pageable pageable);
 }

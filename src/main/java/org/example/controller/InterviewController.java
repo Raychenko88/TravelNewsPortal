@@ -49,8 +49,9 @@ public class InterviewController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
-        return new ResponseEntity<>(interviewService.findAll(page, size), HttpStatus.OK);
+    public ResponseEntity<Page> findAll(@RequestParam String pageLanguage
+            , @RequestParam Integer page, @RequestParam Integer size) {
+        return new ResponseEntity<>(interviewService.findAll(pageLanguage, page, size), HttpStatus.OK);
     }
 
 

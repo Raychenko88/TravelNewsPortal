@@ -49,8 +49,9 @@ public class GalleryController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size) {
-        return new ResponseEntity<>(galleryService.findAll(page, size), HttpStatus.OK);
+    public ResponseEntity<Page> findAll(@RequestParam  String pageLanguage
+            , @RequestParam Integer page, @RequestParam Integer size) {
+        return new ResponseEntity<>(galleryService.findAll(pageLanguage, page, size), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

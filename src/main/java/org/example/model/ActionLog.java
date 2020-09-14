@@ -21,7 +21,7 @@ public class ActionLog {
     private Integer id;
     @Column(name = "user_name", length = 50)
     private String userName;
-    private Integer login;
+    private String login;
     private String action;
     private Date creationTime;
 }

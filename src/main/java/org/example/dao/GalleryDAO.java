@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GalleryDAO extends PagingAndSortingRepository<Gallery, Integer> {
 
-    Page<Gallery> findAll(Pageable pageable);
+    Page<Gallery> findAllByPageLanguage(String pageLanguage, Pageable pageable);
 }

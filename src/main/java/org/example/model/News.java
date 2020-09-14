@@ -28,4 +28,5 @@ public class News {
     private Date creationTime;
     private Date publishingTime;
     private String country;
+    private String pageLanguage;
 }

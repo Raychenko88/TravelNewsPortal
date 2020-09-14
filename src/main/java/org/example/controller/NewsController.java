@@ -50,20 +50,21 @@ public class NewsController {
     }
 
     @GetMapping
-    public ResponseEntity<Page> findAll(@RequestParam Integer page, @RequestParam Integer size){
-        return new ResponseEntity<>(newsService.findAll(page, size), HttpStatus.OK);
+    public ResponseEntity<Page> findAll(@RequestParam String pageLanguage
+            , @RequestParam Integer page, @RequestParam Integer size){
+        return new ResponseEntity<>(newsService.findAll(pageLanguage, page, size), HttpStatus.OK);
     }
 
     @GetMapping(path = "find-all-by-country")
-    public ResponseEntity<Page> findAllByCountry(@RequestParam String country
-            , @RequestParam Integer page, @RequestParam Integer size){
-        return new ResponseEntity<>(newsService.findAllByCountry(country, page, size), HttpStatus.OK);
+    public ResponseEntity<Page> findAllByCountry(@RequestParam String pageLanguage
+            , @RequestParam String country, @RequestParam Integer page, @RequestParam Integer size){
+        return new ResponseEntity<>(newsService.findAllByCountry(pageLanguage, country, page, size), HttpStatus.OK);
     }
 
     @GetMapping(path = "find-all-by-country-is-not")
-    public ResponseEntity<Page> findAllByCountryIsNot(@RequestParam String country
-            , @RequestParam Integer page, @RequestParam Integer size){
-        return new ResponseEntity<>(newsService.findAllByCountryIsNot(country, page, size), HttpStatus.OK);
+    public ResponseEntity<Page> findAllByCountryIsNot(@RequestParam String pageLanguage
+            , @RequestParam String country, @RequestParam Integer page, @RequestParam Integer size){
+        return new ResponseEntity<>(newsService.findAllByCountryIsNot(pageLanguage, country, page, size), HttpStatus.OK);
     }
 
 

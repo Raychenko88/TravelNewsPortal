@@ -53,7 +53,7 @@ public class NewsServiceImpl implements NewsService {
 
 
     @Override
-    public Page<News> findAll(Integer page, Integer size) {
+    public Page<News> findAll(String pageLanguage, Integer page, Integer size) {
         if (page > 0) {
             page--;
         } else {
@@ -61,11 +61,11 @@ public class NewsServiceImpl implements NewsService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return newsDAO.findAll(pageRequest);
+        return newsDAO.findAllByPageLanguage(pageLanguage, pageRequest);
     }
 
     @Override
-    public Page<News> findAllByCountry(String country, Integer page, Integer size) {
+    public Page<News> findAllByCountry(String country, String pageLanguage, Integer page, Integer size) {
         if (page > 0) {
             page--;
         } else {
@@ -73,11 +73,11 @@ public class NewsServiceImpl implements NewsService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return newsDAO.findAllByCountry(country, pageRequest);
+        return newsDAO.findAllByCountryAndPageLanguage(country, pageLanguage, pageRequest);
     }
 
     @Override
-    public Page<News> findAllByCountryIsNot(String country, Integer page, Integer size) {
+    public Page<News> findAllByCountryIsNot(String pageLanguage, String country, Integer page, Integer size) {
         if (page > 0) {
             page--;
         } else {
@@ -85,7 +85,7 @@ public class NewsServiceImpl implements NewsService {
         }
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTime");
         PageRequest pageRequest = PageRequest.of(page, size, sort);
-        return newsDAO.findAllByCountryIsNot(country, pageRequest);
+        return newsDAO.findAllByCountryIsNotAndPageLanguage(pageLanguage, country, pageRequest);
     }
 
     @Override

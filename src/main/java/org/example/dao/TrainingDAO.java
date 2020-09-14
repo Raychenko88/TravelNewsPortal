@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TrainingDAO extends PagingAndSortingRepository<Training, Integer> {
 
-    Page<Training> findAll(Pageable pageable);
+    Page<Training> findAllByPageLanguage(String pageLanguage, Pageable pageable);
 }

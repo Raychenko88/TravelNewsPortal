@@ -1,7 +1,9 @@
 package org.example.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.example.dao.ActionLogDAO;
 import org.example.dao.UserDAO;
+import org.example.model.ActionLog;
 import org.example.model.User;
 import org.example.service.UserService;
 import org.springframework.data.domain.Page;
@@ -18,6 +20,8 @@ import static java.util.Optional.ofNullable;
 public class UserServiceImpl implements UserService {
 
     private final UserDAO userDAO;
+
+    private final ActionLogDAO actionLogDAO;
 
     @Override
     public User save(User user) {
