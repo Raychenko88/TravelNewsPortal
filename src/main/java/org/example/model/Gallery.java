@@ -24,7 +24,6 @@ public class Gallery {
     private String text;
     private String video;
     private Date creationTime;
-    private Date publishingTime;
     private String country;
     private String pageLanguage;
 }

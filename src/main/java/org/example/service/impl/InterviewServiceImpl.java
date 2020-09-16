@@ -3,12 +3,16 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.InterviewDAO;
 import org.example.model.Interview;
+import org.example.model.Photo;
 import org.example.service.InterviewService;
+import org.example.service.PhotoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
@@ -18,6 +22,8 @@ import static java.util.Optional.ofNullable;
 public class InterviewServiceImpl implements InterviewService {
 
     private final InterviewDAO interviewDAO;
+
+    private final PhotoService photoService;
 
     @Override
     public Interview save(Interview interview) {
@@ -47,7 +53,13 @@ public class InterviewServiceImpl implements InterviewService {
     public Interview findById(Integer id) {
         Optional<Interview> interview = ofNullable(interviewDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
-        return interview.get();
+        Interview interviewSet = interview.get();
+        List<String> listPhotos = new ArrayList<>();
+        for (Photo photo : photoService.findAllByInterviewId(id)) {
+            listPhotos.add(photo.getLink());
+        }
+        interviewSet.setListPhotos(listPhotos);
+        return interviewSet;
     }
 
     @Override

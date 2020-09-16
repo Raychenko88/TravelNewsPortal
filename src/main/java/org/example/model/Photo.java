@@ -13,14 +13,18 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "photo_for_gallery")
-public class PhotoForGallery {
+@Table(name = "photos")
+public class Photo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToOne(targetEntity = Gallery.class)
-    private Gallery gallery;
+    @ManyToOne(targetEntity = News.class)
+    private News news;
+    @ManyToOne(targetEntity = Training.class)
+    private Training training;
+    @ManyToOne(targetEntity = Interview.class)
+    private Interview interview;
     private String link;
-    private Date creationTime;
+    private Date creationTimePhoto;
 }

@@ -3,13 +3,17 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.NewsDAO;
 import org.example.model.News;
+import org.example.model.Photo;
 import org.example.service.NewsService;
+import org.example.service.PhotoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.Optional.ofNullable;
@@ -19,6 +23,8 @@ import static java.util.Optional.ofNullable;
 public class NewsServiceImpl implements NewsService {
 
     private final NewsDAO newsDAO;
+
+    private final PhotoService photoService;
 
     @Override
     public News save(News news) {
@@ -48,7 +54,13 @@ public class NewsServiceImpl implements NewsService {
     public News findById(Integer id) {
         Optional<News> news = ofNullable(newsDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
-        return news.get();
+        News newsSet = news.get();
+        List<String> listPhotos = new ArrayList<>();
+        for (Photo photo : photoService.findAllByNewsId(id)) {
+            listPhotos.add(photo.getLink());
+        }
+        newsSet.setListPhotos(listPhotos);
+        return newsSet;
     }
 
 

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -28,4 +29,5 @@ public class User {
     private String lastName;
     @Column(name = "user_role", length = 50)
     private String userRole;
+    private Date creationTime;
 }
