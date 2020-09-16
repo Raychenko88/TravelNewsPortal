@@ -25,7 +25,7 @@ public class PhotoServiceImpl implements PhotoService {
     public Photo save(Photo photo) {
         if (photo.getId() != null) {
             try {
-                throw new Exception("PhotoForGallery already exists");
+                throw new Exception("Photo already exists");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -37,7 +37,7 @@ public class PhotoServiceImpl implements PhotoService {
     public Photo update(Photo photo) {
         if (photo.getId() == null) {
             try {
-                throw new Exception("PhotoForGallery id not found");
+                throw new Exception("Photo id not found");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -47,9 +47,9 @@ public class PhotoServiceImpl implements PhotoService {
 
     @Override
     public Photo findById(Integer id) {
-        Optional<Photo> photoForGallery = ofNullable(photoDAO.findById(id))
+        Optional<Photo> photo = ofNullable(photoDAO.findById(id))
                 .orElseThrow(() -> new RuntimeException());
-        return photoForGallery.get();
+        return photo.get();
     }
 
     @Override
