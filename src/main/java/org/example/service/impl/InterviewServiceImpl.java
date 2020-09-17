@@ -4,8 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.example.dao.InterviewDAO;
 import org.example.model.Interview;
 import org.example.model.Photo;
+import org.example.model.Text;
+import org.example.model.Video;
 import org.example.service.InterviewService;
 import org.example.service.PhotoService;
+import org.example.service.TextService;
+import org.example.service.VideoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -24,6 +28,10 @@ public class InterviewServiceImpl implements InterviewService {
     private final InterviewDAO interviewDAO;
 
     private final PhotoService photoService;
+
+    private final VideoService videoService;
+
+    private final TextService textService;
 
     @Override
     public Interview save(Interview interview) {
@@ -55,10 +63,20 @@ public class InterviewServiceImpl implements InterviewService {
                 .orElseThrow(() -> new RuntimeException());
         Interview interviewSet = interview.get();
         List<String> listPhotos = new ArrayList<>();
-        for (Photo photo : photoService.findAllByInterviewId(id)) {
+        List<String> listVideo = new ArrayList<>();
+        List<String> listTexts = new ArrayList<>();
+        for (Photo photo : photoService.findAllByNewsId(id)) {
             listPhotos.add(photo.getLink());
         }
+        for (Video video: videoService.findAllByNewsId(id)) {
+            listVideo.add(video.getLink());
+        }
+        for (Text text: textService.findAllByNewsId(id)) {
+            listTexts.add(text.getText());
+        }
         interviewSet.setListPhotos(listPhotos);
+        interviewSet.setListPhotos(listVideo);
+        interviewSet.setListTexts(listTexts);
         return interviewSet;
     }
 

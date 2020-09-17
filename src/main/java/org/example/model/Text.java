@@ -3,8 +3,6 @@ package org.example.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Setter
@@ -13,8 +11,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "photos")
-public class Photo {
+@Table(name = "texts")
+public class Text {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,8 +24,6 @@ public class Photo {
     private Training training;
     @ManyToOne(targetEntity = Interview.class)
     private Interview interview;
-    @ManyToOne(targetEntity = Text.class)
-    private Text text;
-    private String link;
-    private Date creationTimePhoto;
+    private String text;
+    private Date creationTimeText;
 }

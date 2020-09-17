@@ -55,8 +55,7 @@ public class PhotoServiceImpl implements PhotoService {
     @Override
     public List<Photo> findAll() {
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTimePhoto");
-        List<Photo> list = photoDAO.findAll(sort);
-        return photoDAO.findAll();
+        return photoDAO.findAll(sort);
     }
 
     @Override

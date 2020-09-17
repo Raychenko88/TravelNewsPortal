@@ -4,8 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.example.dao.NewsDAO;
 import org.example.model.News;
 import org.example.model.Photo;
+import org.example.model.Text;
+import org.example.model.Video;
 import org.example.service.NewsService;
 import org.example.service.PhotoService;
+import org.example.service.TextService;
+import org.example.service.VideoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -25,6 +29,10 @@ public class NewsServiceImpl implements NewsService {
     private final NewsDAO newsDAO;
 
     private final PhotoService photoService;
+
+    private final VideoService videoService;
+
+    private final TextService textService;
 
     @Override
     public News save(News news) {
@@ -56,10 +64,20 @@ public class NewsServiceImpl implements NewsService {
                 .orElseThrow(() -> new RuntimeException());
         News newsSet = news.get();
         List<String> listPhotos = new ArrayList<>();
+        List<String> listVideo = new ArrayList<>();
+        List<String> listTexts = new ArrayList<>();
         for (Photo photo : photoService.findAllByNewsId(id)) {
             listPhotos.add(photo.getLink());
         }
+        for (Video video: videoService.findAllByNewsId(id)) {
+            listVideo.add(video.getLink());
+        }
+        for (Text text: textService.findAllByNewsId(id)) {
+            listTexts.add(text.getText());
+        }
         newsSet.setListPhotos(listPhotos);
+        newsSet.setListPhotos(listVideo);
+        newsSet.setListTexts(listTexts);
         return newsSet;
     }
 

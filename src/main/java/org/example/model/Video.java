@@ -23,6 +23,8 @@ public class Video {
     private Training training;
     @ManyToOne(targetEntity = Interview.class)
     private Interview interview;
+    @ManyToOne(targetEntity = Text.class)
+    private Text text;
     private String link;
     private Date creationTimeVideo;
 }

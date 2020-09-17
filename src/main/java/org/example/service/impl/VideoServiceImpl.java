@@ -53,8 +53,7 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public List<Video> findAll() {
         Sort sort = Sort.by(Sort.Direction.DESC, "creationTimeVideo");
-        List<Video> list = videoDAO.findAll(sort);
-        return videoDAO.findAll();
+        return videoDAO.findAll(sort);
     }
 
     @Override

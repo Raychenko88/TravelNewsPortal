@@ -3,12 +3,11 @@ package org.example.service.impl;
 import lombok.RequiredArgsConstructor;
 import org.example.dao.ActionLogDAO;
 import org.example.dao.TrainingDAO;
-import org.example.model.ActionLog;
-import org.example.model.News;
-import org.example.model.Photo;
-import org.example.model.Training;
+import org.example.model.*;
 import org.example.service.PhotoService;
+import org.example.service.TextService;
 import org.example.service.TrainingService;
+import org.example.service.VideoService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -27,6 +26,10 @@ public class TrainingServiceImpl implements TrainingService {
     private final TrainingDAO trainingDAO;
 
     private final PhotoService photoService;
+
+    private final VideoService videoService;
+
+    private final TextService textService;
 
     @Override
     public Training save(Training training){
@@ -58,10 +61,20 @@ public class TrainingServiceImpl implements TrainingService {
                 .orElseThrow(() -> new RuntimeException());
         Training trainingSet = training.get();
         List<String> listPhotos = new ArrayList<>();
-        for (Photo photo : photoService.findAllByTrainingId(id)) {
+        List<String> listVideo = new ArrayList<>();
+        List<String> listTexts = new ArrayList<>();
+        for (Photo photo : photoService.findAllByNewsId(id)) {
             listPhotos.add(photo.getLink());
         }
+        for (Video video: videoService.findAllByNewsId(id)) {
+            listVideo.add(video.getLink());
+        }
+        for (Text text: textService.findAllByNewsId(id)) {
+            listTexts.add(text.getText());
+        }
         trainingSet.setListPhotos(listPhotos);
+        trainingSet.setListPhotos(listVideo);
+        trainingSet.setListTexts(listTexts);
         return trainingSet;
     }
 
