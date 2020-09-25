@@ -1,0 +1,153 @@
+
+/*----fonts----*/
+
+@font-face {
+    font-family: 'FuturaPT-Book';
+    src: url('../fonts/FuturaPT-Book.eot');
+    src: url('../fonts/FuturaPT-Book.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/FuturaPT-Book.svg#FuturaPT-Book') format('svg'),
+    url('../fonts/FuturaPT-Book.ttf') format('truetype'),
+    url('../fonts/FuturaPT-Book.woff') format('woff'),
+    url('../fonts/FuturaPT-Book.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Raleway-Medium';
+    src: url('../fonts/Raleway-Medium.eot');
+    src: url('../fonts/Raleway-Medium.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/Raleway-Medium.svg#Raleway-Medium') format('svg'),
+    url('../fonts/Raleway-Medium.ttf') format('truetype'),
+    url('../fonts/Raleway-Medium.woff') format('woff'),
+    url('../fonts/Raleway-Medium.woff2') format('woff2');
+}
+
+
+/*----specification----*/
+
+
+body{
+    font-family: 'Tahoma', sans-serif;
+    color: black;
+    font-size: 18px;
+}
+
+h1,h2,h3{
+    font-family: 'Raleway 800';
+    text-transform: uppercase;
+    color: #000;
+}
+
+section{
+    padding: 50px 0;
+}
+/*----header----*/
+
+.main-page-header{
+    background: url("../img/header_bg.png") no-repeat center top;
+}
+
+.img-link {
+    margin-right: 18px;
+}
+.link{
+    margin-left: 75px;
+}
+.link, .header-btn{
+    margin-bottom: 20px;
+    padding-top: 20px;
+
+}
+.header-btn a{
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 20px;
+    color: black;
+    font-family: 'Raleway-Medium';
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
+
+.header-btn a:hover{
+    background-color: #ff9f1c;
+    border-radius: 3px;
+    height: inherit;
+}
+.header-logo__img{
+    padding-bottom: 77px;
+}
+
+.header-logo{
+    position: relative;
+}
+
+.seekers__text{
+    position: absolute;
+    color: #000000;
+    font-size: 24px;
+    margin-left: -280px;
+    margin-top: 95px;
+
+}
+
+.navigation{
+    background: #1d7a72;
+
+}
+.main-menu{
+   height: 58px;
+    align-items: center;
+}
+.main-menu__item{
+    font-family: 'FuturaPT-Book';
+    list-style-type: none;
+    margin-right: 35px;
+}
+
+.main-menu__item a{
+    text-decoration: none;
+    display: block;
+    color: #fdfeda;
+}
+
+.main-menu__item a:hover{
+    align-items: center;
+    background: #ff9f1c;
+    border-radius: 3px;
+    height: 100%;
+}
+
+/*----banner----*/
+
+
+
+/*----Main Page----*/
+.main-page{
+    background: url("../img/main-page__bg.png") no-repeat center center;
+    margin-top: 66px;
+}
+
+.ticket{
+   width: 249px;
+    height: 212px;
+    box-shadow: inset 0 2px 7px #b7b8a8, inset 0 -2px 7px #b7b8a8;
+    background-color: #ffffff;
+    margin-bottom: 44px;
+}
+
+/*---- footer ----*/
+.about{
+    width: 249px;
+}
+
+.Cooperation{
+    width: 249px;
+}
+
+.Contacts{
+    width: 249px;
+}
+
+.footer{
+    font-family: 'FuturaPT-Book';
+    font-size: 16px;
+}
